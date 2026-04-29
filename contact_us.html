@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us – Innofun Yogurt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Main page fonts (for navbar) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <!-- Contact page fonts (existing) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    /* NAVBAR STYLES (consistent with main page) */
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.03em;
+      color: #1a3325;
+    }
+
+    .pill-nav a {
+      border: 1.5px solid #1a3325;
+      border-radius: 999px;
+      padding: 0.35rem 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: #1a3325;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .pill-nav a:hover {
+      background: #1a3325;
+      color: #d4e8a0;
+    }
+
+    /* Contact page input focus styles */
+    .form-input {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 0.65rem 1rem;
+      font-size: 0.875rem;
+      color: #374151;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: #e55a2b;
+      box-shadow: 0 0 0 3px rgba(229,90,43,0.12);
+    }
+    .form-input::placeholder { color: #b0b7c3; }
+
+    /* Card hover */
+    .contact-card {
+      background: #f8f9fa;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    /* Send button */
+    .btn-send {
+      width: 100%;
+      background: #e55a2b;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+    }
+    .btn-send:hover {
+      background: #c94d22;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(229,90,43,0.35);
+    }
+    .btn-send:active { transform: translateY(0); }
+
+    /* Footer link hover (unused) */
+    .footer-link {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #e55a2b; }
+
+    /* Icon circle */
+    .icon-circle {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: rgba(229,90,43,0.10);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- ══════════════ NAVBAR (same as main page) ══════════════ -->
+<nav class="py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-50" style="background-color:#d4e8a0;">
+  <span class="logo">Innofun Drink<sup style="font-size:0.55em;vertical-align:super;"></sup></span>
+
+  <!-- Mobile hamburger button -->
+  <button id="menu-toggle" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full border-2 border-green-900 text-green-900 hover:bg-green-900 hover:text-green-100 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Desktop nav links (hidden on mobile, shown by JS toggle) -->
+  <div id="mobile-menu" class="pill-nav hidden lg:flex items-center gap-2 flex-col lg:flex-row absolute lg:static top-full left-0 w-full lg:w-auto py-4 lg:py-0 px-6 lg:px-0 shadow-lg lg:shadow-none z-40" style="background-color:#d4e8a0;">
+    <a href="index.html">Our Drink</a>
+    <a href="Ingredients.html">Ingredients</a>
+    <a href="contact_us.html">Contact us</a>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <!-- Cart Icon -->
+    <button class="w-9 h-9 rounded-full border-2 border-green-900 flex items-center justify-center hover:bg-green-900 hover:text-green-100 transition-colors" style="border-color:#1a3325;color:#1a3325;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
+      </svg>
+    </button>
+    <!-- User Icon -->
+    <button class="w-9 h-9 rounded-full border-2 flex items-center justify-center hover:bg-green-900 hover:text-green-100 transition-colors" style="border-color:#1a3325;color:#1a3325;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════
+     GET IN TOUCH SECTION
+════════════════════════════════════ -->
+<section class="py-16 px-6 md:px-12 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <!-- ── LEFT: Contact Form ── -->
+      <div>
+        <h2 class="text-4xl font-bold text-gray-900 mb-3">Get In Touch</h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-8 max-w-sm">
+          "We are dedicated to turning local agricultural products into high-value, healthy drinks that support Cambodia’s farmers and consumers. Reach out to learn more about our mission to provide 100% natural Greek Yogurt Drinks made with ingredients from across our provinces."
+        </p>
+
+        <form class="flex flex-col gap-5" onsubmit="return false;">
+
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
+            <input type="text" class="form-input" placeholder="Your Name"/>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+            <input type="email" class="form-input" placeholder="Your Email Address"/>
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
+            <input type="text" class="form-input" placeholder="Title"/>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
+            <textarea class="form-input resize-none" rows="5" placeholder="Type here..."></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-send">Send Now</button>
+
+        </form>
+      </div>
+
+      <!-- ── RIGHT: Contact Info Cards + Social ── -->
+      <div class="flex flex-col gap-5">
+
+        <!-- Phone -->
+        <div class="contact-card">
+          <div class="icon-circle">
+            <!-- Phone SVG icon in orange -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="#e55a2b">
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.02l-2.2 2.19z"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-gray-800 text-base mb-2">Phone Number</h4>
+          <p class="text-gray-500 text-sm">+855 81-539-005 </p>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card">
+          <div class="icon-circle">
+            <!-- Email SVG icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="#e55a2b">
+              <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-gray-800 text-base mb-2">Email Address</h4>
+          <p class="text-gray-500 text-sm">innufunyogurt@gmail.com</p>
+        </div>
+
+        <!-- Location -->
+        <div class="contact-card">
+          <div class="icon-circle">
+            <!-- Location pin SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="#e55a2b">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-gray-800 text-base mb-2">Our Location</h4>
+          <p class="text-gray-500 text-sm">National Meanchey University, National Road No. 5, Banoy Village, Teuk Thla Commune, Sisophon Town, Banteay Meanchey Province, Cambodia</p>
+        </div>
+
+        <!-- ═══ SOCIAL MEDIA LINKS ═══ -->
+        <div class="mt-6">
+          <h4 class="text-center font-bold text-gray-800 text-base mb-4">Follow Us</h4>
+          <div class="flex justify-center gap-4">
+
+            <!-- Facebook -->
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center hover:bg-orange-100 transition"
+               aria-label="Facebook Page">
+              <svg class="w-5 h-5" fill="#e55a2b" viewBox="0 0 24 24">
+                <path d="M18.77 18l.47-3.45h-3.08v-2.24c0-.94.34-1.76 1.44-1.76h1.54V7.6s-1.22-.2-2.39-.2c-2.42 0-4 1.48-4 4.17v2.02H9.33V18h3.43v8.34a10.45 10.45 0 004.48 0V18z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center hover:bg-orange-100 transition"
+               aria-label="TikTok">
+              <svg class="w-5 h-5" fill="#e55a2b" viewBox="0 0 24 24">
+                <path d="M12.53.02c1.31-.02 2.61-.02 3.91-.02v2.81c.7.02 1.4.07 2.07.22 1.13.24 2.01.97 2.5 1.98.22.46.33.96.34 1.46.02.8 0 1.6 0 2.4-1.27-.06-2.55-.4-3.7-1.08-.36-.21-.73-.44-1.11-.65v6.3c0 1.98-.47 3.79-1.7 5.15-1.26 1.43-3 2.14-4.95 2.08-2.2-.06-4.08-1.04-5.26-2.7-1.24-1.69-1.76-3.87-1.57-6.08.2-2.6 1.66-4.82 3.95-5.67.74-.27 1.52-.41 2.3-.4.8 0 1.6.13 2.4.31v2.21c-.8-.22-1.6-.34-2.4-.23-1.62.22-2.84 1.33-3.27 2.88-.39 1.37-.32 2.67.33 3.91.65 1.23 1.61 2.03 2.96 2.17 1.06.11 2.07-.2 2.83-1.08.43-.49.69-1.08.79-1.72.06-.32.08-.65.08-.97V.02z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center hover:bg-orange-100 transition"
+               aria-label="Instagram">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#e55a2b" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4.5"/>
+                <circle cx="17.5" cy="6.5" r="1.5" fill="#e55a2b"/>
+              </svg>
+            </a>
+
+            <!-- YouTube -->
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center hover:bg-orange-100 transition"
+               aria-label="YouTube">
+              <svg class="w-5 h-5" fill="#e55a2b" viewBox="0 0 24 24">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 15V9l6 3-6 3z"/>
+              </svg>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     GOOGLE MAP EMBED
+════════════════════════════════════ -->
+<section class="px-6 md:px-12 pb-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="rounded-lg overflow-hidden shadow-md border border-gray-100" style="height: 300px;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7756.464115024138!2d102.9295064942242!3d13.582629475971112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311ae76384bcac2d%3A0x6ae37e3dcb70f17f!2z4Z6f4Z624Z6A4Z6b4Z6c4Z634Z6R4Z-S4Z6Z4Z624Z6b4Z-Q4Z6Z4Z6H4Z624Z6P4Z634Z6Y4Z624Z6T4Z6H4Z-Q4Z6Z!5e0!3m2!1skm!2skh!4v1777481875295!5m2!1skm!2skh"
+        width="100%"
+        height="300"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Our Location on Google Maps">
+      </iframe>
+    </div>
+
+    <!-- Attribution line matching original -->
+    <p class="text-center text-xs text-gray-400 mt-3 tracking-wide">www.DownloadNewThemes.com</p>
+  </div>
+</section>
+
+<!-- ══════════════ MOBILE MENU SCRIPT ══════════════ -->
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+    });
+  }
+</script>
+
+</body>
+</html>
