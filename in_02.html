@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients – Activit</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        .font-barlow-condensed { font-family: 'Barlow Condensed', sans-serif; }
+        .font-barlow { font-family: 'Barlow', sans-serif; }
+
+        /* ─── PAGE HERO ─────────────────────────────── */
+        .ing-hero {
+            background-color: #1a3325;
+            overflow: hidden;
+            position: relative;
+        }
+        .ing-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(124,184,54,0.18) 0%, transparent 70%),
+                        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(212,232,160,0.10) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .count-deco {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(7rem, 16vw, 14rem);
+            line-height: 1;
+            color: rgba(124,184,54,0.10);
+            position: absolute;
+            right: -1rem;
+            bottom: -2rem;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.04em;
+        }
+
+        /* ─── SECTION LABEL ─────────────────────────── */
+        .section-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #7cb836;
+        }
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #1a3325;
+            line-height: 0.9;
+            letter-spacing: 0.01em;
+        }
+
+        /* ─── INGREDIENT CARDS ──────────────────────── */
+        .ing-card {
+            background: #f4fbe8;
+            border: 1.5px solid #d4e8a0;
+            border-radius: 1.4rem;
+            padding: 2rem 1.6rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(.22,.68,0,.98), box-shadow 0.3s;
+        }
+        .ing-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,184,54,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ing-card:hover {
+            transform: translateY(-8px) rotate(-0.4deg);
+            box-shadow: 0 24px 50px rgba(26,51,37,0.13);
+            border-color: #7cb836;
+        }
+        .ing-card.dark {
+            background: #1a3325;
+            border-color: rgba(124,184,54,0.3);
+        }
+        .ing-card.dark::after {
+            background: radial-gradient(circle, rgba(212,232,160,0.08) 0%, transparent 70%);
+        }
+        .ing-card.accent {
+            background: #cfe06e;
+            border-color: #b8cc50;
+        }
+        .ing-card.accent::after {
+            background: radial-gradient(circle, rgba(26,51,37,0.12) 0%, transparent 70%);
+        }
+        .ing-card.dark .card-name { color: #d4e8a0; }
+        .ing-card.accent .card-name { color: #1a3325; }
+        .ing-card.dark .card-number { color: #d4e8a0; }
+        .ing-card.dark .card-desc { color: rgba(212,232,160,0.6); }
+        .ing-card.accent .card-desc { color: rgba(26,51,37,0.7); }
+        .ing-card.dark .card-tag { border-color: rgba(212,232,160,0.3); color: #d4e8a0; }
+        .ing-card.accent .card-tag { border-color: rgba(26,51,37,0.3); color: #1a3325; }
+        .ing-card.dark .card-benefit { color: #7cb836; border-color: rgba(124,184,54,0.2); }
+        .ing-card.accent .card-benefit { color: #1a3325; border-color: rgba(26,51,37,0.2); }
+
+        /* real photo image style (drop-shadow like emoji before) */
+        .card-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 16px;
+            filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
+        }
+        .card-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            opacity: 0.35;
+        }
+        .card-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 1.55rem;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+            color: #1a3325;
+        }
+        .card-tag {
+            display: inline-block;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            border: 1.5px solid rgba(26,51,37,0.25);
+            color: #1a3325;
+        }
+        .card-desc {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.65;
+            color: rgba(26,51,37,0.65);
+            flex: 1;
+        }
+        .card-benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #7cb836;
+            border-top: 1px solid rgba(124,184,54,0.2);
+            padding-top: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* ─── FRUIT STRIP ───────────────────────────── */
+        .fruit-strip {
+            background: #d4e8a0;
+            border-radius: 1.4rem;
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            border: 1.5px solid #bdd87a;
+        }
+        .fruit-strip-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            color: #1a3325;
+            letter-spacing: 0.02em;
+        }
+        .fruit-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 0.9rem 1.2rem;
+            background: rgba(255,255,255,0.55);
+            border-radius: 0.9rem;
+            border: 1.5px solid rgba(26,51,37,0.10);
+            transition: background 0.2s;
+        }
+        .fruit-item:hover { background: rgba(255,255,255,0.85); }
+        .fruit-icon {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+        }
+        .fruit-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1a3325;
+        }
+        .fruit-note {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.78rem;
+            color: rgba(26,51,37,0.55);
+            margin-top: 0.1rem;
+        }
+        .fruit-bar-wrap {
+            flex: 1;
+            height: 4px;
+            background: rgba(26,51,37,0.10);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-left: auto;
+            max-width: 100px;
+        }
+        .fruit-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7cb836, #cfe06e);
+            border-radius: 99px;
+            width: 0;
+            animation: growBar 1.2s cubic-bezier(.22,.68,0,.98) both;
+            animation-delay: 0.3s;
+        }
+        @keyframes growBar { from { width: 0; } }
+
+        /* ─── PURITY BANNER ─────────────────────────── */
+        .purity-banner {
+            background: #1a3325;
+            border-radius: 1.6rem;
+            overflow: hidden;
+            position: relative;
+            padding: 3rem 3.5rem;
+        }
+        .purity-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(124,184,54,0.15) 0%, transparent 65%);
+        }
+        .purity-stat {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: #d4e8a0;
+            line-height: 1;
+        }
+        .purity-stat span { color: #7cb836; }
+        .purity-stat-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(212,232,160,0.5);
+            margin-top: 0.2rem;
+        }
+
+        /* ─── SCROLL ANIMATIONS ─────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { animation: fadeUp 0.65s ease both; }
+        .d1 { animation-delay: 0.05s; }
+        .d2 { animation-delay: 0.15s; }
+        .d3 { animation-delay: 0.25s; }
+        .d4 { animation-delay: 0.35s; }
+        .d5 { animation-delay: 0.45s; }
+        .d6 { animation-delay: 0.55s; }
+    </style>
+</head>
+<body class="bg-white antialiased">
+
+    <!-- ══════════════ HERO BANNER ══════════════ -->
+    <section class="ing-hero py-20 px-12 relative">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-8 relative z-10">
+
+            <!-- Left text -->
+            <div>
+                <p class="font-barlow-condensed font-semibold text-xs tracking-[0.25em] uppercase text-[#7cb836] mb-4">What goes inside</p>
+                <h1 class="font-bebas text-[clamp(4.5rem,10vw,9rem)] leading-[0.88] text-[#d4e8a0] tracking-[0.01em] mb-6">
+                    Real.<br/><span class="text-[#7cb836]">Raw.</span><br/>Pure.
+                </h1>
+                <p class="font-barlow text-base text-[rgba(212,232,160,0.65)] max-w-[340px] leading-relaxed mb-8">
+                    Every sip starts with nature. We source only clean, whole ingredients — no fillers, no shortcuts, no compromise.
+                </p>
+                <span class="inline-block border border-[rgba(124,184,54,0.45)] rounded-full px-4 py-1.5 font-barlow-condensed text-[0.8rem] font-semibold tracking-[0.12em] uppercase text-[#7cb836]">
+                    100% Natural Sourcing
+                </span>
+            </div>
+
+            <!-- Right — ingredient count cards -->
+            <div class="flex gap-5 flex-shrink-0">
+                <div class="text-center">
+                    <p class="font-bebas text-[3.5rem] leading-none text-[#d4e8a0]">6</p>
+                    <p class="font-barlow-condensed font-semibold text-xs tracking-[0.2em] uppercase text-[rgba(212,232,160,0.5)]">Core<br/>Ingredients</p>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div class="text-center">
+                    <p class="font-bebas text-[3.5rem] leading-none text-[#7cb836]">4</p>
+                    <p class="font-barlow-condensed font-semibold text-xs tracking-[0.2em] uppercase text-[rgba(212,232,160,0.5)]">Fresh<br/>Fruits</p>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div class="text-center">
+                    <p class="font-bebas text-[3.5rem] leading-none text-[#d4e8a0]">0</p>
+                    <p class="font-barlow-condensed font-semibold text-xs tracking-[0.2em] uppercase text-[rgba(212,232,160,0.5)]">Artificial<br/>Anything</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- giant decorative number -->
+        <span class="count-deco">9</span>
+    </section>
+
+    <!-- ══════════════ MAIN INGREDIENTS GRID ══════════════ -->
+    <section class="bg-white py-20 px-12">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Section header -->
+            <div class="mb-14 flex items-end justify-between">
+                <div>
+                    <p class="section-eyebrow mb-2">The lineup</p>
+                    <h2 class="section-title text-[clamp(3rem,6vw,5.5rem)]">Every<br/>Ingredient<br/>Earns Its Place.</h2>
+                </div>
+                <p class="font-barlow text-sm text-right leading-relaxed max-w-xs text-[rgba(26,51,37,0.55)]">
+                    We pick ingredients the way a chef picks produce — obsessively, seasonally, and with total accountability.
+                </p>
+            </div>
+
+            <!-- ── Row 1: 3 columns ── -->
+            <div class="grid grid-cols-3 gap-5 mb-5">
+
+                <!-- Yogurt -->
+                <div class="ing-card dark reveal d1">
+                    <div class="flex items-start justify-between">
+                        <img src="https://images.unsplash.com/photo-1563460716031-6b7f12a1c0b6?w=200&h=200&fit=crop&auto=format" alt="Yogurt" class="card-img" />
+                        <span class="card-number text-[#d4e8a0]">01</span>
+                    </div>
+                    <div>
+                        <span class="card-tag">Dairy Base</span>
+                    </div>
+                    <p class="card-name text-[#d4e8a0]">Yogurt</p>
+                    <p class="card-desc">
+                        Creamy, probiotic-rich yogurt forms our silky smooth base. It delivers live cultures that support gut health and a velvety mouthfeel that no artificial thickener can replicate.
+                    </p>
+                    <div class="card-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Probiotics · Protein · Creaminess
+                    </div>
+                </div>
+
+                <!-- Milk -->
+                <div class="ing-card reveal d2">
+                    <div class="flex items-start justify-between">
+                        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop&auto=format" alt="Fresh Milk" class="card-img" />
+                        <span class="card-number">02</span>
+                    </div>
+                    <div>
+                        <span class="card-tag">Dairy Base</span>
+                    </div>
+                    <p class="card-name">Fresh Milk</p>
+                    <p class="card-desc">
+                        Pure whole milk rounds out the texture, adding natural sweetness and calcium. Sourced from local farms with no added hormones or preservatives — just milk, as it should be.
+                    </p>
+                    <div class="card-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Calcium · Natural Sweetness · Body
+                    </div>
+                </div>
+
+                <!-- Limes -->
+                <div class="ing-card accent reveal d3">
+                    <div class="flex items-start justify-between">
+                        <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=200&h=200&fit=crop&auto=format" alt="Limes" class="card-img" />
+                        <span class="card-number">03</span>
+                    </div>
+                    <div>
+                        <span class="card-tag">Citrus Zing</span>
+                    </div>
+                    <p class="card-name">Limes</p>
+                    <p class="card-desc">
+                        Fresh-squeezed lime juice brings the bright, punchy acidity that cuts through richness and balances every sip. High in vitamin C and natural flavor compounds — the secret sharp edge.
+                    </p>
+                    <div class="card-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Vitamin C · Acidity Balance · Freshness
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── Row 2: Fruit strip (wide) + 2 specialty cards ── -->
+            <div class="grid grid-cols-5 gap-5">
+
+                <!-- Fruit block spans 2 cols -->
+                <div class="col-span-2 fruit-strip reveal d2">
+                    <div>
+                        <span class="section-eyebrow">Fresh Picked</span>
+                        <p class="fruit-strip-title mt-1">The Fruit Four</p>
+                        <p class="font-barlow text-xs leading-relaxed mt-1 text-[rgba(26,51,37,0.55)] max-w-[260px]">
+                            Whole fruits, blended at peak ripeness. No concentrates, no pastes — just the real thing.
+                        </p>
+                    </div>
+
+                    <!-- Watermelon -->
+                    <div class="fruit-item">
+                        <img src="https://images.unsplash.com/photo-1589984662647-9d75e7a1f9a3?w=200&h=200&fit=crop&auto=format" alt="Watermelon" class="fruit-icon" />
+                        <div>
+                            <p class="fruit-label">Watermelon</p>
+                            <p class="fruit-note">Hydrating · Light · Sweet</p>
+                        </div>
+                        <div class="fruit-bar-wrap">
+                            <div class="fruit-bar" style="width:90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pineapple -->
+                    <div class="fruit-item">
+                        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=200&h=200&fit=crop&auto=format" alt="Pineapple" class="fruit-icon" />
+                        <div>
+                            <p class="fruit-label">Pineapple</p>
+                            <p class="fruit-note">Tropical · Bright · Tangy</p>
+                        </div>
+                        <div class="fruit-bar-wrap">
+                            <div class="fruit-bar" style="width:80%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Mango -->
+                    <div class="fruit-item">
+                        <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=200&h=200&fit=crop&auto=format" alt="Mango" class="fruit-icon" />
+                        <div>
+                            <p class="fruit-label">Mango</p>
+                            <p class="fruit-note">Rich · Creamy · Aromatic</p>
+                        </div>
+                        <div class="fruit-bar-wrap">
+                            <div class="fruit-bar" style="width:85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Banana -->
+                    <div class="fruit-item">
+                        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b2b6?w=200&h=200&fit=crop&auto=format" alt="Banana" class="fruit-icon" />
+                        <div>
+                            <p class="fruit-label">Banana</p>
+                            <p class="fruit-note">Smooth · Thick · Energizing</p>
+                        </div>
+                        <div class="fruit-bar-wrap">
+                            <div class="fruit-bar" style="width:75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Green Grass Jelly Powder -->
+                <div class="ing-card dark col-span-2 reveal d3 min-h-[300px]">
+                    <div class="flex items-start justify-between">
+                        <img src="https://images.unsplash.com/photo-1597176110310-e2c28e4c4c1b?w=200&h=200&fit=crop&auto=format" alt="Green Grass Jelly Powder" class="card-img" />
+                        <span class="card-number text-[#d4e8a0]">05</span>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="card-tag">Signature Ingredient</span>
+                        <span class="inline-block border border-[rgba(124,184,54,0.45)] rounded-full px-3 py-0.5 font-barlow-condensed text-[0.65rem] font-semibold tracking-[0.12em] uppercase text-[#7cb836]">Preakrong Brand</span>
+                    </div>
+                    <p class="card-name text-[2rem]">Green Grass<br/>Jelly Powder</p>
+                    <p class="card-desc">
+                        The hero ingredient that sets Activit apart. Preakrong's premium grass jelly powder delivers a distinctly smooth, subtly herbal character — rich in antioxidants and traditionally prized for cooling, calming properties. It's what makes us unmistakably us.
+                    </p>
+                    <div class="card-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Antioxidants · Cooling Effect · Signature Flavor
+                    </div>
+                </div>
+
+                <!-- Palm Sugar -->
+                <div class="ing-card col-span-1 reveal d4">
+                    <div class="flex items-start justify-between">
+                        <img src="https://images.unsplash.com/photo-1584270354947-df56e2d4398b?w=200&h=200&fit=crop&auto=format" alt="Palm Sugar Powder" class="card-img" />
+                        <span class="card-number">06</span>
+                    </div>
+                    <div>
+                        <span class="card-tag">Natural Sweetener</span>
+                    </div>
+                    <p class="card-name">Palm Sugar Powder</p>
+                    <p class="card-desc">
+                        Unrefined, low-GI palm sugar with a rich caramel depth. Natural grade — minimally processed, full of trace minerals, and free from the blood-sugar spikes of refined white sugar.
+                    </p>
+                    <div class="card-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Low-GI · Mineral Rich · Natural
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ PURITY PROMISE BANNER ══════════════ -->
+    <section class="py-12 px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="purity-banner">
+                <div class="relative z-10 flex items-center justify-between flex-wrap gap-10">
+
+                    <!-- Left headline -->
+                    <div>
+                        <p class="section-eyebrow mb-3 text-[#7cb836]">Our promise</p>
+                        <h3 class="font-bebas text-[clamp(2.5rem,5vw,4.5rem)] text-[#d4e8a0] leading-[0.92]">
+                            Nothing Hidden.<br/>Nothing Fake.<br/><span class="text-[#7cb836]">Ever.</span>
+                        </h3>
+                    </div>
+
+                    <!-- Stats row -->
+                    <div class="flex items-center gap-10 flex-wrap">
+                        <div>
+                            <p class="purity-stat">0<span>g</span></p>
+                            <p class="purity-stat-label">Artificial<br/>Additives</p>
+                        </div>
+                        <div class="w-px h-[60px] bg-white/10"></div>
+                        <div>
+                            <p class="purity-stat">100<span>%</span></p>
+                            <p class="purity-stat-label">Whole Food<br/>Sourced</p>
+                        </div>
+                        <div class="w-px h-[60px] bg-white/10"></div>
+                        <div>
+                            <p class="purity-stat"><span>#</span>1</p>
+                            <p class="purity-stat-label">Clean Label<br/>Standard</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div>
+                        <a href="#" class="inline-flex items-center gap-2 font-barlow-condensed font-bold tracking-[0.06em] uppercase text-white bg-[#7cb836] rounded-full px-8 py-3.5 text-[0.9rem] no-underline hover:bg-[#6aa32e] transition-colors">
+                            SHOP DRINKS
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="bg-[#1a3325] py-8 px-12 flex items-center justify-between">
+        <span class="font-bebas text-[#d4e8a0]">activit<sup class="text-[0.55em]">*</sup></span>
+        <p class="font-barlow-condensed text-xs tracking-[0.2em] uppercase text-[rgba(124,184,54,0.7)]">© 2026 Activit. All rights reserved.</p>
+        <div class="flex gap-6">
+            <a href="#" class="font-barlow-condensed text-xs uppercase tracking-[0.2em] text-[rgba(212,232,160,0.5)] hover:text-white transition-colors">Privacy</a>
+            <a href="#" class="font-barlow-condensed text-xs uppercase tracking-[0.2em] text-[rgba(212,232,160,0.5)] hover:text-white transition-colors">Terms</a>
+            <a href="#" class="font-barlow-condensed text-xs uppercase tracking-[0.2em] text-[rgba(212,232,160,0.5)] hover:text-white transition-colors">Contact</a>
+        </div>
+    </footer>
+
+</body>
+</html>
