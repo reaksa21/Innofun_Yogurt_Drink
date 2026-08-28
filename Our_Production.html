@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Production | INNOFUN DRINK</title>
+    <meta name="description" content="Discover how INNOFUN creates premium Greek yogurt drinks from fresh Cambodian ingredients.">
+
+    <!-- GOOGLE FONTS (Added Barlow Condensed for the Navbar) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        innofun: {
+                            dark: '#123629',
+                            green: '#234B35',
+                            light: '#EAF3BD',
+                            cream: '#F5F8DF',
+                            border: '#91A26E',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #F5F8DF;
+            color: #123629;
+            overflow-x: hidden;
+        }
+
+        /* ── Master Navbar CSS ── */
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            letter-spacing: 0.03em;
+            color: #1a3325;
+        }
+
+        .pill-nav a {
+            border: 1.5px solid #1a3325;
+            border-radius: 999px;
+            padding: 0.35rem 1.1rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            letter-spacing: 0.04em;
+            color: #1a3325;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
+        }
+        
+        .pill-nav a:hover {
+            background: #1a3325;
+            color: #d4e8a0;
+        }
+
+        /* =====================================
+           SCROLL REVEAL
+        ===================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================
+           FLOATING ANIMATION
+        ===================================== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* =====================================
+           PROCESS CARD
+        ===================================== */
+        .process-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.38), rgba(235,245,190,0.28));
+            border: 1px solid rgba(18,54,41,0.22);
+            box-shadow: 0 10px 30px rgba(18,54,41,0.05);
+            transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.65), rgba(235,245,190,0.45));
+            box-shadow: 0 20px 45px rgba(18,54,41,0.12);
+        }
+
+        /* =====================================
+           STEP CIRCLE
+        ===================================== */
+        .step-number {
+            background: #123629;
+            border: 4px solid #DDEAB5;
+            box-shadow: 0 4px 12px rgba(18,54,41,.2);
+        }
+
+        /* =====================================
+           ICON CIRCLE
+        ===================================== */
+        .icon-circle {
+            border: 2px solid rgba(18,54,41,.45);
+            background: rgba(245,248,223,.65);
+            transition: transform .35s ease, background .35s ease;
+        }
+
+        .process-card:hover .icon-circle {
+            transform: scale(1.06);
+            background: rgba(255,255,255,.7);
+        }
+
+        /* =====================================
+           CONNECTOR
+        ===================================== */
+        .connector {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #234B35, transparent);
+            opacity: .55;
+        }
+
+        /* =====================================
+           CUSTOM SCROLLBAR
+        ===================================== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F8DF; }
+        ::-webkit-scrollbar-thumb { background: #123629; border-radius: 20px; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <nav class="py-4 px-6 md:px-8 flex items-center justify-between sticky top-0 z-50" style="background-color:#d4e8a0;">
+      <span class="logo">Innofun Drink<sup style="font-size:0.55em;vertical-align:super;"></sup></span>
+
+      <!-- Mobile hamburger button -->
+      <button id="menu-toggle" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full border-2 border-green-900 text-green-900 hover:bg-green-900 hover:text-green-100 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Desktop nav links -->
+      <div id="mobile-menu" class="pill-nav hidden lg:flex items-center gap-2 flex-col lg:flex-row absolute lg:static top-full left-0 w-full lg:w-auto lg:bg-transparent py-4 lg:py-0 px-6 lg:px-0 shadow-lg lg:shadow-none z-40" style="background-color:#d4e8a0;">
+        <a href="index.html">Our Drink</a>
+        <a href="Ingredients.html">Ingredients</a>
+        <a href="contact_us.html">Contact us</a>
+        <a href="Our_Production.html" style="background: #1a3325; color: #d4e8a0;">Our Production</a>
+        <a href="About_us.html">About Us</a>
+        <!-- <a href="Our_Story.html">Our Story</a> -->
+        <a href="Product_Detail.html">Product Detail</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Cart Icon -->
+        <button class="w-9 h-9 rounded-full border-2 border-green-900 flex items-center justify-center hover:bg-green-900 hover:text-green-100 transition-colors" style="border-color:#1a3325;color:#1a3325;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
+          </svg>
+        </button>
+        <!-- User Icon -->
+        <button class="w-9 h-9 rounded-full border-2 flex items-center justify-center hover:bg-green-900 hover:text-green-100 transition-colors" style="border-color:#1a3325;color:#1a3325;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- =====================================
+         HERO SECTION
+    ===================================== -->
+    <section class="relative min-h-[85vh] pt-[150px] pb-20 overflow-hidden bg-[#EAF3BD]">
+        <!-- BACKGROUND LIGHT -->
+        <div class="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] rounded-full bg-[#DCEB9F]/50 blur-3xl"></div>
+        <div class="absolute bottom-[-250px] right-[-200px] w-[600px] h-[600px] rounded-full bg-[#DCEB9F]/50 blur-3xl"></div>
+
+        <div class="relative z-10 max-w-[1450px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- LEFT CONTENT -->
+                <div class="reveal">
+                    <p class="font-display tracking-[5px] text-[18px] text-[#234B35] mb-5">FROM FARM TO BOTTLE</p>
+                    <h1 class="font-display text-[80px] sm:text-[100px] md:text-[130px] leading-[0.82] uppercase text-[#123629]">
+                        HOW OUR<br>
+                        <span class="text-transparent" style="-webkit-text-stroke: 2px #123629;">PRODUCT</span><br>
+                        WORKS
+                    </h1>
+                    <div class="mt-8 w-[100px] h-[3px] bg-[#123629]"></div>
+                    <p class="max-w-[560px] mt-8 text-[17px] md:text-[19px] leading-[1.8] text-[#294238]">
+                        From fresh Cambodian ingredients to a healthy and delicious Greek yogurt drink. Every bottle is crafted carefully through a natural five-step production process.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <div class="px-5 py-3 rounded-full border border-[#123629]/40 bg-white/30">
+                            <span class="font-semibold text-sm">✓ 100% Natural</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-full border border-[#123629]/40 bg-white/30">
+                            <span class="font-semibold text-sm">✓ No Preservatives</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-full border border-[#123629]/40 bg-white/30">
+                            <span class="font-semibold text-sm">✓ Cambodian Ingredients</span>
+                        </div>
+                    </div>
+                </div>
+
+<!-- RIGHT VISUAL -->
+                <div class="relative flex justify-center reveal" style="transition-delay:.2s;">
+                    <!-- LARGE CIRCLE -->
+                    <div class="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] rounded-full border border-[#123629]/20 bg-[#F5F8DF]/50"></div>
+                    
+                    <!-- BOTTLE IMAGE -->
+                    <!-- I expanded the container width to 650px so the wide image has room to breathe -->
+                    <div class="relative z-10 floating w-[360px] md:w-[650px] h-[350px] md:h-[480px] flex items-center justify-center">
+                        <!-- Added 'w-full' and 'scale-110' to force the image to grow and pop out of the circle -->
+                        <img src="Final Bottle/ProNoBack.png" alt="INNOFUN Greek Yogurt Drink" class="w-full object-contain drop-shadow-2xl mix-blend-multiply scale-110 md:scale-125">
+                    </div>
+                    
+                    <!-- FLOATING FRUIT -->
+                    <!-- Moved these out slightly so they don't get hidden behind the larger bottle image -->
+                    <div class="absolute top-[20px] left-[0px] md:left-[10px] text-[60px] floating">🍍</div>
+                    <div class="absolute bottom-[60px] right-[0px] md:right-[20px] text-[65px] floating">🥭</div>
+                </div>
+        </div>
+    </section>
+
+    <!-- =====================================
+         PRODUCTION PROCESS
+    ===================================== -->
+    <section id="process" class="relative py-24 md:py-32 overflow-hidden bg-[#F5F8DF]">
+        <!-- TOP DECORATION -->
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-[#123629]/10"></div>
+
+        <div class="relative z-10 max-w-[1700px] mx-auto px-5 md:px-10">
+            <!-- TITLE -->
+            <div class="text-center reveal mb-24">
+                <h2 class="font-serif text-[42px] md:text-[72px] font-bold uppercase tracking-[2px] text-[#123629]">
+                    HOW OUR PRODUCT WORKS
+                </h2>
+                <p class="font-serif text-[22px] md:text-[30px] font-semibold mt-4 text-[#24382E]">
+                    From fresh ingredients to a healthy, delicious drink
+                </p>
+            </div>
+
+            <!-- DESKTOP PROCESS -->
+            <div class="hidden xl:grid grid-cols-5 gap-8 relative">
+                <!-- CONNECTOR -->
+                <div class="absolute top-[118px] left-[9%] right-[9%] connector z-0"></div>
+
+                <!-- STEP 1 -->
+                <div class="relative z-10 process-card rounded-[26px] px-6 pb-7 pt-20 reveal">
+                    <div class="step-number absolute -top-9 left-1/2 -translate-x-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center text-white text-[36px] font-bold">1</div>
+                    <div class="icon-circle w-[150px] h-[150px] mx-auto rounded-full flex items-center justify-center mb-7">
+                        <div class="text-[60px]">♨</div>
+                    </div>
+                    <h3 class="font-serif text-[20px] font-bold text-center uppercase mb-6">Precision Heating</h3>
+                    <ul class="space-y-3 text-[17px] leading-[1.6]">
+                        <li>• Heat milk to 82°C</li>
+                        <li>• Cool to an optimal 45–50°C</li>
+                    </ul>
+                    <div class="mt-7 py-3 px-4 rounded-full text-center border border-[#123629]/15 bg-[#DDEAB5]/60">
+                        <span class="text-sm font-semibold">🌡 82°C → 45–50°C</span>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="relative z-10 process-card rounded-[26px] px-6 pb-7 pt-20 reveal" style="transition-delay:.1s;">
+                    <div class="step-number absolute -top-9 left-1/2 -translate-x-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center text-white text-[36px] font-bold">2</div>
+                    <div class="icon-circle w-[150px] h-[150px] mx-auto rounded-full flex items-center justify-center mb-7">
+                        <div class="text-[60px]">🫙</div>
+                    </div>
+                    <h3 class="font-serif text-[20px] font-bold text-center uppercase mb-6">Fermentation</h3>
+                    <ul class="space-y-3 text-[17px] leading-[1.6]">
+                        <li>• Stir in yogurt starter</li>
+                        <li>• Incubate for 8–12 hours</li>
+                    </ul>
+                    <div class="mt-7 py-3 px-4 rounded-full text-center border border-[#123629]/15 bg-[#DDEAB5]/60">
+                        <span class="text-sm font-semibold">🕒 8–12 hrs</span>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="relative z-10 process-card rounded-[26px] px-6 pb-7 pt-20 reveal" style="transition-delay:.2s;">
+                    <div class="step-number absolute -top-9 left-1/2 -translate-x-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center text-white text-[36px] font-bold">3</div>
+                    <div class="icon-circle w-[150px] h-[150px] mx-auto rounded-full flex items-center justify-center mb-7">
+                        <div class="text-[60px]">🥣</div>
+                    </div>
+                    <h3 class="font-serif text-[20px] font-bold text-center uppercase mb-6">Straining</h3>
+                    <ul class="space-y-3 text-[17px] leading-[1.6]">
+                        <li>• Strain for 2–4 hours</li>
+                        <li>• Create thick Greek-style yogurt</li>
+                    </ul>
+                    <div class="mt-7 py-3 px-4 rounded-full text-center border border-[#123629]/15 bg-[#DDEAB5]/60">
+                        <span class="text-sm font-semibold">🕒 2–4 hrs</span>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="relative z-10 process-card rounded-[26px] px-6 pb-7 pt-20 reveal" style="transition-delay:.3s;">
+                    <div class="step-number absolute -top-9 left-1/2 -translate-x-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center text-white text-[36px] font-bold">4</div>
+                    <div class="icon-circle w-[150px] h-[150px] mx-auto rounded-full flex items-center justify-center mb-7">
+                        <div class="text-[55px]">🍍</div>
+                    </div>
+                    <h3 class="font-serif text-[20px] font-bold text-center uppercase mb-6">Blending</h3>
+                    <ul class="space-y-3 text-[17px] leading-[1.6]">
+                        <li>• Blend with fresh local fruit</li>
+                        <li>• Add palm sugar and Preakrong jelly</li>
+                    </ul>
+                    <div class="mt-7 py-3 px-4 rounded-full text-center border border-[#123629]/15 bg-[#DDEAB5]/60">
+                        <span class="text-sm font-semibold">🍍 + 🍉 + 🟩</span>
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="relative z-10 process-card rounded-[26px] px-6 pb-7 pt-20 reveal" style="transition-delay:.4s;">
+                    <div class="step-number absolute -top-9 left-1/2 -translate-x-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center text-white text-[36px] font-bold">5</div>
+                    <div class="icon-circle w-[150px] h-[150px] mx-auto rounded-full flex items-center justify-center mb-7">
+                        <div class="text-[55px]">❄</div>
+                    </div>
+                    <h3 class="font-serif text-[20px] font-bold text-center uppercase mb-6">Bottle & Chill</h3>
+                    <ul class="space-y-3 text-[17px] leading-[1.6]">
+                        <li>• Bottle to maintain freshness</li>
+                        <li>• Refrigerate before delivery</li>
+                    </ul>
+                    <div class="mt-7 py-3 px-4 rounded-full text-center border border-[#123629]/15 bg-[#DDEAB5]/60">
+                        <span class="text-sm font-semibold">❄ Refrigerate at 4°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOBILE + TABLET -->
+            <div class="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- STEP 1 -->
+                <div class="process-card rounded-[25px] p-6 reveal">
+                    <div class="flex items-center gap-5">
+                        <div class="step-number w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold uppercase">Precision Heating</h3>
+                            <p class="text-sm mt-2">Heat milk to 82°C, then cool to 45–50°C.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="process-card rounded-[25px] p-6 reveal">
+                    <div class="flex items-center gap-5">
+                        <div class="step-number w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold uppercase">Fermentation</h3>
+                            <p class="text-sm mt-2">Add yogurt starter and incubate for 8–12 hours.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="process-card rounded-[25px] p-6 reveal">
+                    <div class="flex items-center gap-5">
+                        <div class="step-number w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold uppercase">Straining</h3>
+                            <p class="text-sm mt-2">Strain for 2–4 hours to create thick Greek yogurt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="process-card rounded-[25px] p-6 reveal">
+                    <div class="flex items-center gap-5">
+                        <div class="step-number w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold uppercase">Blending</h3>
+                            <p class="text-sm mt-2">Blend with fresh fruits, palm sugar and jelly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="process-card rounded-[25px] p-6 reveal">
+                    <div class="flex items-center gap-5">
+                        <div class="step-number w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">5</div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold uppercase">Bottle & Chill</h3>
+                            <p class="text-sm mt-2">Refrigerate at 4°C and prepare for delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FINAL MESSAGE -->
+            <div class="text-center mt-24 reveal">
+                <div class="w-[70px] h-[2px] bg-[#123629] mx-auto mb-8"></div>
+                <h3 class="font-serif text-[30px] md:text-[48px] font-bold text-[#123629]">
+                    Fresh Ingredients. Natural Process.<br>Better Nutrition.
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document.querySelectorAll('.reveal').forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Mobile Menu Toggle Script for Navbar
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+        }
+    </script>
+</body>
+</html>
