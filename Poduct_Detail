@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INNOFUN DRINK | Product Detail</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#dff0a4',
+              green: '#0b3325',
+              lime: '#c9df79',
+              card: '#eef6c9',
+              accent: '#73952c',
+              cream: '#fff8e8'
+            }
+          },
+          fontFamily: {
+            display: ['Anton', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background: #dff0a4;
+      color: #0b3325;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .display-font {
+      font-family: 'Anton', sans-serif;
+      letter-spacing: .015em;
+    }
+    .nav-pill, .flavor-btn, .buy-btn, .quantity-btn {
+      transition: all .2s ease;
+    }
+    .nav-pill:hover {
+      background: #0b3325;
+      color: #dff0a4;
+    }
+    .nav-pill.active {
+      background: #0b3325;
+      color: #dff0a4;
+    }
+    .flavor-btn.active {
+      background: #0b3325;
+      color: #dff0a4;
+      transform: translateY(-2px);
+    }
+    .product-panel {
+      box-shadow: 0 20px 55px rgba(11,51,37,.10);
+    }
+    .fruit-orb {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+    }
+    .benefit-card {
+      transition: transform .2s ease;
+    }
+    .nutrition-row:last-child { border-bottom: 0; }
+  </style>
+</head>
+
+<body class="min-h-screen">
+
+  <!-- HEADER -->
+  <header class="w-full px-6 sm:px-10 lg:px-12 pt-6">
+    <nav class="flex items-center justify-between gap-5">
+      <a href="index.html" class="shrink-0 text-[25px] sm:text-[29px] font-black tracking-tight">
+        INNOFUN DRINK
+      </a>
+
+      <div class="hidden lg:flex items-center justify-center gap-2 flex-1">
+        <a href="index.html" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Our Drink</a>
+        <a href="#ingredients" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Ingredients</a>
+        <a href="#contact" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Contact us</a>
+        <a href="#production" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Our_Production</a>
+        <a href="about-us.html" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">About Us</a>
+        <a href="#story" class="nav-pill border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Our Story</a>
+        <a href="#product-detail" class="nav-pill active border border-brand-green rounded-full px-5 py-2.5 text-sm font-bold">Product Detail</a>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <button aria-label="Shopping cart"
+          class="w-11 h-11 rounded-full border border-brand-green flex items-center justify-center hover:bg-brand-green hover:text-brand-bg transition">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"/>
+            <circle cx="10" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/>
+          </svg>
+        </button>
+        <button aria-label="Account"
+          class="w-11 h-11 rounded-full border border-brand-green flex items-center justify-center hover:bg-brand-green hover:text-brand-bg transition">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="3.5"/>
+            <path d="M5 20c.8-3.3 3.2-5 7-5s6.2 1.7 7 5"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="product-detail" class="px-5 sm:px-8 lg:px-12 pb-20">
+
+    <!-- HERO TITLE -->
+    <section class="max-w-7xl mx-auto pt-12 lg:pt-14">
+      <div class="flex justify-center">
+        <div class="inline-flex items-center gap-2 border border-brand-green rounded-full px-5 py-2 text-sm font-bold">
+          <span>🍃</span>
+          <span>PRODUCT DETAIL</span>
+          <span>🍃</span>
+        </div>
+      </div>
+
+      <div class="relative mt-5 text-center">
+        <span class="absolute left-[7%] sm:left-[15%] lg:left-[20%] top-1 text-4xl sm:text-5xl fruit-orb">🍍</span>
+        <h1 class="display-font text-6xl sm:text-7xl md:text-8xl lg:text-[92px] leading-[.92] uppercase">
+          Greek Yogurt<br class="sm:hidden"> Drinks
+        </h1>
+        <span class="absolute right-[7%] sm:right-[15%] lg:right-[20%] bottom-0 text-4xl sm:text-5xl fruit-orb">🍉</span>
+      </div>
+
+      <p class="max-w-2xl mx-auto mt-6 text-center text-sm sm:text-base leading-7 font-medium">
+        Explore our Fresh &amp; Digest Greek Yogurt Drink collection,
+        made with locally sourced ingredients and real fruit flavors.
+      </p>
+
+      <!-- FLAVOR SELECTOR -->
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <button class="flavor-btn active border border-brand-green rounded-full px-7 py-3 font-bold text-sm" data-flavor="watermelon">🍉 Watermelon</button>
+        <button class="flavor-btn border border-brand-green rounded-full px-7 py-3 font-bold text-sm" data-flavor="mango">🥭 Mango</button>
+        <button class="flavor-btn border border-brand-green rounded-full px-7 py-3 font-bold text-sm" data-flavor="pineapple">🍍 Pineapple</button>
+        <button class="flavor-btn border border-brand-green rounded-full px-7 py-3 font-bold text-sm" data-flavor="banana">🍌 Banana</button>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL PANEL -->
+    <section class="max-w-7xl mx-auto mt-10">
+      <div class="product-panel bg-brand-card/80 border border-brand-green/15 rounded-[34px] overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+
+          <!-- PRODUCT VISUAL -->
+          <div id="visual"
+            class="min-h-[520px] lg:min-h-[620px] p-8 sm:p-12 flex items-center justify-center relative overflow-hidden"
+            style="background: linear-gradient(145deg,#f8d8dc,#dff0a4);">
+
+            <div class="absolute w-[430px] h-[430px] rounded-full border border-brand-green/10"></div>
+            <div class="absolute w-[330px] h-[330px] rounded-full border border-brand-green/10"></div>
+
+            <div class="relative z-10 text-center">
+              <div id="fruit" class="text-[125px] sm:text-[155px] fruit-orb drop-shadow-lg">🍉</div>
+
+              <!-- Stylized bottle made with HTML/CSS -->
+              <div class="relative mx-auto mt-2 w-[175px] sm:w-[195px] h-[335px] sm:h-[365px]">
+                <div class="absolute left-1/2 -translate-x-1/2 -top-7 w-[88px] h-[43px] rounded-t-[15px] rounded-b-[7px] bg-white border-2 border-black/10"></div>
+                <div class="absolute left-1/2 -translate-x-1/2 top-3 w-[112px] h-[38px] rounded-[15px] bg-[#eee] border border-black/10"></div>
+
+                <div id="bottle"
+                  class="absolute inset-x-0 top-10 bottom-0 rounded-[38px_38px_45px_45px] border-2 border-brand-green/10 shadow-2xl"
+                  style="background:#fff6e8;">
+                  <div class="absolute inset-x-3 top-14 bottom-4 rounded-[28px] overflow-hidden flex flex-col items-center justify-center px-4 text-center"
+                    style="background:#f9e9e9;">
+                    <div class="text-xs font-bold tracking-wide">INNOFUN</div>
+                    <div class="text-[11px] font-bold mt-2">GREEK</div>
+                    <div class="text-[11px] font-bold">YOGURT DRINK</div>
+                    <div id="labelFlavor" class="display-font text-[29px] sm:text-[33px] leading-none mt-2">WATERMELON</div>
+                    <div class="mt-3 bg-brand-green text-white rounded-full px-4 py-1 text-[9px] font-bold">
+                      FRESH &amp; DIGEST
+                    </div>
+                    <div id="miniFruit" class="text-5xl mt-3">🍉</div>
+                    <div class="mt-auto text-[9px] font-bold bg-brand-green text-white rounded-full px-3 py-1">
+                      250 ml
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="mt-5 text-xs font-bold tracking-[.2em] uppercase">250 ml • Fresh &amp; Digest</p>
+            </div>
+          </div>
+
+          <!-- PRODUCT INFORMATION -->
+          <div class="p-8 sm:p-12 lg:p-14">
+            <div class="flex items-center gap-2 text-brand-accent font-extrabold text-sm">
+              <span>GREEK YOGURT DRINK</span>
+              <span>•</span>
+              <span>250 ML</span>
+            </div>
+
+            <h2 id="productName" class="display-font text-6xl sm:text-7xl mt-3 uppercase leading-none">
+              Watermelon
+            </h2>
+
+            <div class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-green text-brand-bg px-4 py-2 text-sm font-bold">
+              ✓ Fresh &amp; Digest
+            </div>
+
+            <p id="description" class="mt-7 text-[15px] leading-7 font-medium">
+              Creamy Greek yogurt meets juicy watermelon. Made with locally sourced
+              ingredients and carefully blended for a refreshing yogurt drink with a naturally fruity taste.
+            </p>
+
+            <!-- GOODNESS -->
+            <div class="mt-8">
+              <h3 class="display-font text-2xl uppercase">Goodness Inside</h3>
+
+              <div class="grid grid-cols-2 gap-3 mt-4">
+                <div class="benefit-card bg-brand-bg border border-brand-green/15 rounded-2xl p-4">
+                  <div class="text-2xl">🦠</div>
+                  <p class="font-bold text-sm mt-2">Live Probiotics</p>
+                </div>
+                <div class="benefit-card bg-brand-bg border border-brand-green/15 rounded-2xl p-4">
+                  <div class="text-2xl">💪</div>
+                  <p class="font-bold text-sm mt-2">Protein-Rich</p>
+                </div>
+                <div class="benefit-card bg-brand-bg border border-brand-green/15 rounded-2xl p-4">
+                  <div class="text-2xl">🍉</div>
+                  <p class="font-bold text-sm mt-2">Real Fruit</p>
+                </div>
+                <div class="benefit-card bg-brand-bg border border-brand-green/15 rounded-2xl p-4">
+                  <div class="text-2xl">🌿</div>
+                  <p class="font-bold text-sm mt-2">No Artificial Preservatives</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <div class="flex items-center border border-brand-green rounded-full w-fit">
+                <button id="minus" class="quantity-btn w-11 h-11 rounded-full font-bold text-xl hover:bg-brand-green hover:text-brand-bg">−</button>
+                <span id="quantity" class="w-9 text-center font-bold">1</span>
+                <button id="plus" class="quantity-btn w-11 h-11 rounded-full font-bold text-xl hover:bg-brand-green hover:text-brand-bg">+</button>
+              </div>
+
+              <button class="buy-btn flex-1 bg-brand-green text-brand-bg rounded-full px-7 py-3 font-bold hover:scale-[1.02]">
+                ADD TO CART <span class="ml-2">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUTRITION -->
+    <section class="max-w-7xl mx-auto mt-12 grid lg:grid-cols-2 gap-6">
+
+      <div class="bg-brand-cream rounded-[30px] p-7 sm:p-9 border border-brand-green/10">
+        <div class="flex items-end justify-between gap-4 border-b-4 border-brand-green pb-4">
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest">Nutrition Facts</p>
+            <h3 id="nutritionFlavor" class="display-font text-4xl uppercase mt-1">Watermelon</h3>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold">Serving size</p>
+            <p class="font-black">250 ml</p>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-end py-4 border-b border-brand-green/30">
+          <span class="font-black text-lg">Calories</span>
+          <span id="calories" class="font-black text-3xl">140</span>
+        </div>
+
+        <div class="mt-2">
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Total Fat</span><strong id="fat">4.3 g</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Saturated Fat</span><strong id="satFat">3 g</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Cholesterol</span><strong id="cholesterol">10 mg</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Sodium</span><strong id="sodium">40 mg</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Total Carbohydrate</span><strong id="carbs">19 g</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Total Sugars</span><strong id="sugars">17 g</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 border-b border-brand-green/15 text-sm">
+            <span>Protein</span><strong id="protein">8 g</strong>
+          </div>
+          <div class="nutrition-row flex justify-between py-2 text-sm">
+            <span>Calcium</span><strong id="calcium">120 mg</strong>
+          </div>
+        </div>
+
+        <p class="text-[11px] mt-5 leading-5 opacity-70">
+          Nutrition values shown here are based on the uploaded INNOFUN product label artwork.
+          Check the final physical package for the definitive nutrition declaration.
+        </p>
+      </div>
+
+      <!-- INGREDIENTS -->
+      <div id="ingredients" class="bg-brand-card/80 rounded-[30px] p-7 sm:p-9 border border-brand-green/10">
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🥛</span>
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-brand-accent">What's inside</p>
+            <h3 class="display-font text-4xl uppercase">Ingredients</h3>
+          </div>
+        </div>
+
+        <p id="ingredientsText" class="mt-7 text-base leading-8 font-medium">
+          Fresh local milk, authentic Greek yogurt cultures, banana, natural Cambodian palm sugar, and live probiotics.
+        </p>
+
+        <div class="mt-8 border-t border-brand-green/20 pt-6">
+          <h4 class="font-black uppercase tracking-wide text-sm">Product Highlights</h4>
+
+          <div class="mt-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-brand-green text-brand-bg flex items-center justify-center">✓</span>
+              <span class="font-semibold">Keep refrigerated (2–4°C)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-brand-green text-brand-bg flex items-center justify-center">✓</span>
+              <span class="font-semibold">Shake well before drinking</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-brand-green text-brand-bg flex items-center justify-center">✓</span>
+              <span class="font-semibold">Consume within 24h of opening</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 rounded-2xl bg-brand-bg p-5">
+          <p class="text-xs font-black uppercase tracking-widest text-brand-accent">Manufactured by</p>
+          <p class="font-bold mt-1">INNOFUN Co., Ltd.</p>
+          <p class="text-sm mt-1">Phnom Penh, Cambodia</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY / CTA -->
+    <section id="story" class="max-w-7xl mx-auto mt-12 rounded-[30px] bg-brand-green text-brand-bg p-8 sm:p-12 text-center relative overflow-hidden">
+      <div class="absolute -left-6 -top-8 text-7xl opacity-20">🍍</div>
+      <div class="absolute -right-5 -bottom-8 text-7xl opacity-20">🍉</div>
+
+      <p class="text-xs font-black uppercase tracking-[.25em] text-brand-lime">INNOFUN DRINK</p>
+      <h2 class="display-font text-5xl sm:text-6xl uppercase mt-2">Local. Fresh. Pure.</h2>
+      <p class="max-w-2xl mx-auto mt-4 text-sm sm:text-base leading-7 opacity-90">
+        Discover a refreshing Greek yogurt drink collection inspired by
+        real fruit and locally sourced ingredients.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- MOBILE MENU -->
+  <button id="menuButton" aria-label="Open menu"
+    class="lg:hidden fixed bottom-5 right-5 w-14 h-14 rounded-full bg-brand-green text-brand-bg shadow-lg flex items-center justify-center z-50">
+    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </svg>
+  </button>
+
+  <script>
+    const products = {
+      watermelon: {
+        name: "Watermelon",
+        fruit: "🍉",
+        bg: "linear-gradient(145deg,#f8d8dc,#dff0a4)",
+        labelBg: "#f9e9e9",
+        description: "Creamy Greek yogurt meets juicy watermelon. Made with locally sourced ingredients and carefully blended for a refreshing yogurt drink with a naturally fruity taste.",
+        ingredients: "Fresh local milk, authentic Greek yogurt cultures, banana, natural Cambodian palm sugar, and live probiotics.",
+        calories: "140",
+        fat: "4.3 g",
+        satFat: "3 g",
+        cholesterol: "10 mg",
+        sodium: "40 mg",
+        carbs: "19 g",
+        sugars: "17 g",
+        protein: "8 g",
+        calcium: "120 mg"
+      },
+      mango: {
+        name: "Mango",
+        fruit: "🥭",
+        bg: "linear-gradient(145deg,#ffe4a3,#dff0a4)",
+        labelBg: "#fff0bd",
+        description: "Creamy Greek yogurt meets sweet, juicy mango. Made with locally sourced ingredients and carefully blended for a refreshing yogurt drink with a naturally fruity taste.",
+        ingredients: "Fresh local milk, authentic Greek yogurt cultures, banana, natural Cambodian palm sugar, and live probiotics.",
+        calories: "221",
+        fat: "6.0 g",
+        satFat: "5.3 g",
+        cholesterol: "15 mg",
+        sodium: "55 mg",
+        carbs: "28 g",
+        sugars: "17 g",
+        protein: "16 g",
+        calcium: "160 mg"
+      },
+      pineapple: {
+        name: "Pineapple",
+        fruit: "🍍",
+        bg: "linear-gradient(145deg,#fff0a9,#dff0a4)",
+        labelBg: "#fff4c9",
+        description: "Creamy Greek yogurt meets tropical pineapple. Made with locally sourced ingredients and carefully blended for a refreshing yogurt drink with a naturally fruity taste.",
+        ingredients: "Fresh local milk, authentic Greek yogurt cultures, banana, natural Cambodian palm sugar, and live probiotics.",
+        calories: "180",
+        fat: "5 g",
+        satFat: "3 g",
+        cholesterol: "10 mg",
+        sodium: "45 mg",
+        carbs: "29 g",
+        sugars: "14 g",
+        protein: "8 g",
+        calcium: "130 mg"
+      },
+      banana: {
+        name: "Banana",
+        fruit: "🍌",
+        bg: "linear-gradient(145deg,#fff0b5,#dff0a4)",
+        labelBg: "#fff4cf",
+        description: "Creamy Greek yogurt meets smooth, naturally sweet banana. Made with locally sourced ingredients and carefully blended for a refreshing yogurt drink with a naturally fruity taste.",
+        ingredients: "Fresh local milk, authentic Greek yogurt cultures, banana, natural Cambodian palm sugar, and live probiotics.",
+        calories: "221",
+        fat: "6.0 g",
+        satFat: "5.3 g",
+        cholesterol: "15 mg",
+        sodium: "55 mg",
+        carbs: "28 g",
+        sugars: "17 g",
+        protein: "16 g",
+        calcium: "160 mg"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".flavor-btn");
+    const visual = document.getElementById("visual");
+    const fruit = document.getElementById("fruit");
+    const miniFruit = document.getElementById("miniFruit");
+    const bottle = document.getElementById("bottle");
+    const labelFlavor = document.getElementById("labelFlavor");
+
+    function selectFlavor(key) {
+      const p = products[key];
+
+      buttons.forEach(btn => btn.classList.toggle("active", btn.dataset.flavor === key));
+
+      visual.style.background = p.bg;
+      fruit.textContent = p.fruit;
+      miniFruit.textContent = p.fruit;
+      bottle.querySelector("div").style.background = p.labelBg;
+      labelFlavor.textContent = p.name.toUpperCase();
+
+      document.getElementById("productName").textContent = p.name;
+      document.getElementById("description").textContent = p.description;
+      document.getElementById("ingredientsText").textContent = p.ingredients;
+      document.getElementById("nutritionFlavor").textContent = p.name;
+
+      document.getElementById("calories").textContent = p.calories;
+      document.getElementById("fat").textContent = p.fat;
+      document.getElementById("satFat").textContent = p.satFat;
+      document.getElementById("cholesterol").textContent = p.cholesterol;
+      document.getElementById("sodium").textContent = p.sodium;
+      document.getElementById("carbs").textContent = p.carbs;
+      document.getElementById("sugars").textContent = p.sugars;
+      document.getElementById("protein").textContent = p.protein;
+      document.getElementById("calcium").textContent = p.calcium;
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => selectFlavor(btn.dataset.flavor));
+    });
+
+    let quantity = 1;
+    document.getElementById("plus").addEventListener("click", () => {
+      quantity++;
+      document.getElementById("quantity").textContent = quantity;
+    });
+    document.getElementById("minus").addEventListener("click", () => {
+      if (quantity > 1) quantity--;
+      document.getElementById("quantity").textContent = quantity;
+    });
+
+    document.getElementById("menuButton").addEventListener("click", () => {
+      const existing = document.getElementById("mobileMenu");
+      if (existing) {
+        existing.remove();
+        return;
+      }
+
+      const menu = document.createElement("div");
+      menu.id = "mobileMenu";
+      menu.className = "fixed bottom-24 right-5 w-64 bg-brand-bg border border-brand-green rounded-3xl p-4 shadow-2xl z-50 flex flex-col gap-2";
+
+      [
+        ["Our Drink", "index.html"],
+        ["Ingredients", "#ingredients"],
+        ["Contact us", "#contact"],
+        ["Our Production", "#production"],
+        ["About Us", "about-us.html"],
+        ["Our Story", "#story"],
+        ["Product Detail", "#product-detail"]
+      ].forEach(([name, href]) => {
+        const a = document.createElement("a");
+        a.href = href;
+        a.textContent = name;
+        a.className = "border border-brand-green rounded-full px-4 py-3 text-sm font-bold hover:bg-brand-green hover:text-brand-bg transition";
+        menu.appendChild(a);
+      });
+
+      document.body.appendChild(menu);
+    });
+  </script>
+</body>
+</html>
